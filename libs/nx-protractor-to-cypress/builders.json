@@ -1,0 +1,10 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/architect/src/builders-schema.json",
+  "builders": {
+    "build": {
+      "implementation": "./src/builders/nx-protractor-to-cypress/builder",
+      "schema": "./src/builders/nx-protractor-to-cypress/schema.json",
+      "description": "nx-protractor-to-cypress builder"
+    }
+  }
+}
