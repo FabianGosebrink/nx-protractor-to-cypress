@@ -11,6 +11,7 @@ import {
   url
 } from '@angular-devkit/schematics';
 import { normalize } from 'path';
+import { getParentProjectName } from '../../utils/angular-utils';
 
 export function copyAllCypressFiles(
   project: experimental.workspace.WorkspaceProject
@@ -42,6 +43,7 @@ export function createProjectsCypressFiles(
 
     overWriteTsConfige2e(tree, _context, project);
     overWriteTsConfig(tree, _context, project);
+    setAppTitleInFirstCypressTest(tree, _context, project, projectName);
 
     return tree;
   };
@@ -93,9 +95,40 @@ function overWriteTsConfig(
   },
   "include": ["**/*.ts", "**/*.js"]
 }
-
 `
   );
+}
+
+function setAppTitleInFirstCypressTest(
+  tree: Tree,
+  context: SchematicContext,
+  project: experimental.workspace.WorkspaceProject,
+  projectName: string
+) {
+  const parentProjectName = getParentProjectName(projectName);
+  const path = `${project.root}/src/integration/app.spec.ts`;
+
+  if (!tree.exists(path)) {
+    context.logger.info(`${path} does not exist, skipping`);
+    return;
+  }
+
+  const stringToWrite = `import { getGreeting } from '../support/app.po';
+
+describe('${parentProjectName}', () => {
+  beforeEach(() => cy.visit('/'));
+
+  it('should display welcome message', () => {
+    // Custom command example, see '../support/commands.ts' file
+    cy.login('my-email@something.com', 'myPassword');
+
+    // Function helper example, see '../support/app.po.ts' file
+    getGreeting().contains('Welcome to ${parentProjectName}!');
+  });
+});
+`;
+
+  tree.overwrite(path, stringToWrite);
 }
 
 function calculateTraverseUptoRootPath(projectRoot: string) {

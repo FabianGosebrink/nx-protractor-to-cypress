@@ -21,12 +21,12 @@ export function getRulesForProjects(
       continue;
     }
 
+    projectRules.push(copyAllCypressFiles(currentProject));
     projectRules.push(deleteProjectProtractorFiles(workspace, projectName));
     projectRules.push(createProjectsCypressFiles(workspace, projectName));
-    projectRules.push(copyAllCypressFiles(currentProject));
-    // projectRules.push(
-    //   addProjectTestingSectionToAngularJson(workspace, projectName)
-    // );
+    projectRules.push(
+      addProjectTestingSectionToAngularJson(workspace, projectName)
+    );
   }
 
   return projectRules;

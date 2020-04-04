@@ -5,7 +5,11 @@ import {
   SchematicsException,
   Tree
 } from '@angular-devkit/schematics';
-import { ANGULAR_JSON_FILENAME } from '../../utils/angular-utils';
+import {
+  ANGULAR_JSON_FILENAME,
+  REPLACER,
+  getParentProjectName
+} from '../../utils/angular-utils';
 
 export function addProjectTestingSectionToAngularJson(
   workspace: experimental.workspace.WorkspaceSchema,
@@ -34,20 +38,25 @@ function updateProjectsTestSection(
 
   project.architect.e2e = getCypressTestingObject(project.root, projectName);
 
-  tree.overwrite(ANGULAR_JSON_FILENAME, JSON.stringify(workspace, null, '\t'));
+  tree.overwrite(
+    ANGULAR_JSON_FILENAME,
+    JSON.stringify(workspace, null, REPLACER)
+  );
 }
 
 function getCypressTestingObject(projectRoot: string, projectName: string) {
+  const parentProjectName = getParentProjectName(projectName);
+
   return {
     builder: '@nrwl/cypress:cypress',
     options: {
       cypressConfig: `${projectRoot}/cypress.json`,
       tsConfig: `${projectRoot}/tsconfig.e2e.json`,
-      devServerTarget: `${projectName}:serve`
+      devServerTarget: `${parentProjectName}:serve`
     },
     configurations: {
       production: {
-        devServerTarget: `${projectName}:serve:production`
+        devServerTarget: `${parentProjectName}:serve:production`
       }
     }
   };

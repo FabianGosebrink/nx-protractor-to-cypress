@@ -28,3 +28,7 @@ export function getAngularWorkspace(tree: Tree) {
 
   return workspace;
 }
+
+export function getParentProjectName(projectName: string) {
+  return projectName.split('-e2e')[0];
+}
