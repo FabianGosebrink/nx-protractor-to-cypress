@@ -3,5 +3,11 @@
   "compilerOptions": {
     "types": ["node", "jest"]
   },
-  "include": ["**/*.ts"]
+  "exclude": [
+    "!src/builders/**/*.ts",
+    "!src/schematics/nx-protractor-to-cypress/*.ts",
+    "!src/schematics/nx-protractor-to-cypress/actions/**/*.ts",
+    "!src/schematics/nx-protractor-to-cypress/utils/**/*.ts",
+    "src/schematics/nx-protractor-to-cypress/files/src"
+  ]
 }
