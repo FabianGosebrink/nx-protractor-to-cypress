@@ -18,10 +18,6 @@ export function copyAllCypressFiles(
 ) {
   return (tree: Tree, context: SchematicContext) => {
     const movePath = normalize(`${project.root}`);
-    if (!tree.exists(movePath)) {
-      context.logger.info(`${movePath} does not exist, skipping`);
-    }
-
     const templateSource = apply(url('./files/'), [move(movePath)]);
 
     return mergeWith(templateSource, MergeStrategy.Overwrite);
