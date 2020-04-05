@@ -1,6 +1,6 @@
 {
   "name": "offeringsolutions",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "nx": "nx",
@@ -51,6 +51,7 @@
     "jest": "25.2.3",
     "ncp": "^2.0.0",
     "prettier": "1.19.1",
+    "release-it": "^13.5.1",
     "ts-jest": "25.2.1",
     "ts-node": "~7.0.0",
     "tslint": "~6.0.0",
