@@ -17,5 +17,8 @@
     "type": "git",
     "url": "https://github.com/FabianGosebrink/nx-protractor-to-cypress"
   },
-  "description": "Replacing Protractor with Cypress in an nx workspace"
+  "description": "Replacing Protractor with Cypress in an nx workspace",
+  "publishConfig": {
+    "access": "public"
+  }
 }
