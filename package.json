@@ -33,7 +33,7 @@
     "release": "npm run build:nx:protractor:to:cypress && cd dist/libs/nx-protractor-to-cypress && release-it",
     "copy:files": "ncp libs/nx-protractor-to-cypress/src/schematics/nx-protractor-to-cypress/files dist/libs/nx-protractor-to-cypress/src/schematics/nx-protractor-to-cypress/files"
   },
-  "private": true,
+  "private": false,
   "dependencies": {},
   "devDependencies": {
     "@nrwl/eslint-plugin-nx": "9.2.1",
