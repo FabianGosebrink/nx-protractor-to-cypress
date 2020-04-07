@@ -1,5 +1,8 @@
 # Nx Protractor To Cypress Schematic for Angular Projects
 
+![TravisCi build](https://travis-ci.org/FabianGosebrink/nx-protractor-to-cypress.svg?branch=master 'Travis CI Build')
+[![npm (scoped)](https://img.shields.io/npm/v/@offeringsolutions/nx-protractor-to-cypress.svg)](https://www.npmjs.com/package/@offeringsolutions/nx-protractor-to-cypress)
+
 ![commandline usage](.github/ng-cmd.png 'Commandline usage')
 
 ## Usage
