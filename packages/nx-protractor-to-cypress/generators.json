@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "nx-protractor-to-cypress",
+  "version": "0.0.1",
+  "generators": {
+    "nxProtractorToCypress": {
+      "factory": "./src/generators/nx-protractor-to-cypress/schematic",
+      "schema": "./src/generators/nx-protractor-to-cypress/schema.json",
+      "description": "Replacing Protractor with Cypress in an nx workspace"
+    },
+    "nx-protractor-to-cypress": {
+      "factory": "./src/generators/nx-protractor-to-cypress/generator",
+      "schema": "./src/generators/nx-protractor-to-cypress/schema.json",
+      "description": "nx-protractor-to-cypress generator"
+    },
+    "ng-add": {
+      "description": "Replacing Protractor with Cypress in an nx workspace",
+      "factory": "./src/generators/nx-protractor-to-cypress/schematic"
+    }
+  }
+}

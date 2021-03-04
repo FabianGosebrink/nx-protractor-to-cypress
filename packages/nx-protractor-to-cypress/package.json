@@ -1,0 +1,26 @@
+{
+  "name": "@offeringsolutions/nx-protractor-to-cypress",
+  "version": "0.1.5",
+  "main": "src/index.js",
+  "generators": "./generators.json",
+  "executors": "./executors.json",
+  "schematics": "./collection.json",
+  "builders": "./builders.json",
+  "keywords": [
+    "schematics",
+    "angular",
+    "nx",
+    "protractor",
+    "cypress"
+  ],
+  "author": "Fabian Gosebrink",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FabianGosebrink/nx-protractor-to-cypress"
+  },
+  "description": "Replacing Protractor with Cypress in an nx workspace",
+  "publishConfig": {
+    "access": "public"
+  }
+}

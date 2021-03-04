@@ -1,13 +1,6 @@
 module.exports = {
-  testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
-  testPathIgnorePatterns: [
-    "/node_modules/",
-    "<rootDir>/(?:.+?)/files/"
+  projects: [
+    '<rootDir>/packages/nx-protractor-to-cypress',
+    '<rootDir>/e2e\\nx-protractor-to-cypress-e2e',
   ],
-  transform: {
-    '^.+\\.(ts|js|html)$': 'ts-jest'
-  },
-  resolver: '@nrwl/jest/plugins/resolver',
-  moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageReporters: ['html']
 };

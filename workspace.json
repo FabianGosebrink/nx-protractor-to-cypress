@@ -1,57 +1,53 @@
 {
-  "version": 1,
+  "version": 2,
   "projects": {
     "nx-protractor-to-cypress": {
-      "root": "libs/nx-protractor-to-cypress",
-      "sourceRoot": "libs/nx-protractor-to-cypress/src",
+      "root": "packages/nx-protractor-to-cypress",
+      "sourceRoot": "packages/nx-protractor-to-cypress/src",
       "projectType": "library",
-      "schematics": {},
-      "architect": {
+      "targets": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "libs/nx-protractor-to-cypress/.eslintrc",
-            "tsConfig": [
-              "libs/nx-protractor-to-cypress/tsconfig.lib.json",
-              "libs/nx-protractor-to-cypress/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/nx-protractor-to-cypress/**"
-            ]
+            "lintFilePatterns": ["packages/nx-protractor-to-cypress/**/*.ts"]
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/nx-protractor-to-cypress"],
           "options": {
-            "jestConfig": "libs/nx-protractor-to-cypress/jest.config.js",
-            "tsConfig": "libs/nx-protractor-to-cypress/tsconfig.spec.json",
+            "jestConfig": "packages/nx-protractor-to-cypress/jest.config.js",
             "passWithNoTests": true
           }
         },
         "build": {
-          "builder": "@nrwl/node:package",
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/libs/nx-protractor-to-cypress",
-            "tsConfig": "libs/nx-protractor-to-cypress/tsconfig.lib.json",
-            "packageJson": "libs/nx-protractor-to-cypress/package.json",
-            "main": "libs/nx-protractor-to-cypress/src/index.ts",
+            "outputPath": "dist/packages/nx-protractor-to-cypress",
+            "tsConfig": "packages/nx-protractor-to-cypress/tsconfig.lib.json",
+            "packageJson": "packages/nx-protractor-to-cypress/package.json",
+            "main": "packages/nx-protractor-to-cypress/src/index.ts",
             "assets": [
-              "libs/nx-protractor-to-cypress/*.md",
+              "packages/nx-protractor-to-cypress/*.md",
               {
-                "input": "./libs/nx-protractor-to-cypress/src",
+                "input": "./packages/nx-protractor-to-cypress/src",
                 "glob": "**/*.!(ts)",
                 "output": "./src"
               },
               {
-                "input": "./libs/nx-protractor-to-cypress",
-                "glob": "collection.json",
+                "input": "./packages/nx-protractor-to-cypress",
+                "glob": "generators.json",
                 "output": "."
               },
               {
-                "input": "./libs/nx-protractor-to-cypress",
-                "glob": "builders.json",
+                "input": "./packages/nx-protractor-to-cypress",
+                "glob": "executors.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/nx-protractor-to-cypress",
+                "glob": "collection.json",
                 "output": "."
               }
             ]
@@ -61,17 +57,16 @@
     },
     "nx-protractor-to-cypress-e2e": {
       "projectType": "application",
-      "root": "apps\\nx-protractor-to-cypress-e2e",
-      "sourceRoot": "apps\\nx-protractor-to-cypress-e2e/src",
-      "architect": {
+      "root": "e2e\\nx-protractor-to-cypress-e2e",
+      "sourceRoot": "e2e\\nx-protractor-to-cypress-e2e/src",
+      "targets": {
         "e2e": {
-          "builder": "@nrwl/nx-plugin:e2e",
+          "executor": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "nx-protractor-to-cypress:build",
             "npmPackageName": "@offeringsolutions/nx-protractor-to-cypress",
-            "pluginOutputPath": "dist/libs/nx-protractor-to-cypress",
-            "jestConfig": "apps/nx-protractor-to-cypress-e2e/jest.config.js",
-            "tsSpecConfig": "apps/nx-protractor-to-cypress-e2e/tsconfig.spec.json"
+            "pluginOutputPath": "dist/packages/nx-protractor-to-cypress",
+            "jestConfig": "e2e/nx-protractor-to-cypress-e2e/jest.config.js"
           }
         }
       }
@@ -79,61 +74,5 @@
   },
   "cli": {
     "defaultCollection": "@nrwl/workspace"
-  },
-  "schematics": {
-    "@nrwl/workspace": {
-      "library": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/cypress": {
-      "cypress-project": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/react": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/next": {
-      "application": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/web": {
-      "application": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/node": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/nx-plugin": {
-      "plugin": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/nest": {
-      "application": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/express": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      }
-    }
   }
 }
